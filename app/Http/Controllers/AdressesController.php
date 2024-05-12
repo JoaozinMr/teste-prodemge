@@ -8,6 +8,8 @@ use Illuminate\Http\Request;
 use Inertia\Inertia;
 use inertia\Response;
 
+use function PHPSTORM_META\type;
+
 class AdressesController extends Controller
 {
     /**
@@ -16,7 +18,7 @@ class AdressesController extends Controller
     public function index(): Response
     {
         return Inertia::render('Adresses/Index', [
-            'adresses' => Adresses::latest()->get(),
+            'adresses' => Adresses::with('citizen:id,name')->latest()->get(),
         ]);
     }
 
@@ -25,7 +27,7 @@ class AdressesController extends Controller
      */
     public function create()
     {
-        //
+        return Inertia::render('Adresses/Create');
     }
 
     /**
@@ -33,9 +35,19 @@ class AdressesController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
-        $validated = $request->validate([]);
+        $validated = $request->validate([
+            'adress_type' => 'required|string|max:255',
+            'cep' => 'required|string|max:9',
+            'street' => 'required|string|max:255',
+            'number' => 'required|string|max:10',
+            'complement' => 'nullable|string|max:255',
+            'neighborhood' => 'required|string|max:255',
+            'city' => 'required|string|max:255',
+            'state' => 'required|string|max:2',
+            'citizen_id' => 'required|integer|exists:citizens,id',
+        ]);
 
-        $request->adresses()->create($validated);
+        $request->user()->adresses()->create($validated);
 
         return redirect(route('adresses.index'));
     }

@@ -2,7 +2,6 @@
 import AuthenticatedLayout from "@/Layouts/AuthenticatedLayout.vue";
 import PrimaryButton from "@/Components/PrimaryButton.vue";
 import { Head, Link } from "@inertiajs/vue3";
-import { defineProps } from "vue";
 
 import { ref } from "vue";
 
@@ -40,6 +39,8 @@ const term = ref('');
           <th class="px-2 py-1 text-sm font-bold text-left">CPF</th>
           <th class="px-2 py-1 text-sm font-bold text-left">Email</th>
           <th class="px-2 py-1 text-sm font-bold text-left">Telefone</th>
+          <th class="px-2 py-1 text-sm font-bold text-left">Nome do pai</th>
+          <th class="px-2 py-1 text-sm font-bold text-left">Nome da mãe</th>
           <th class="px-2 py-1 text-sm font-bold text-left">Ações</th>
         </tr>
 
@@ -50,8 +51,10 @@ const term = ref('');
           <td class="px-2 py-1 text-sm text-left">{{ citizen.cpf }}</td>
           <td class="px-2 py-1 text-sm text-left">{{ citizen.email }}</td>
           <td class="px-2 py-1 text-sm text-left">{{ citizen.phone }}</td>
+          <td class="px-2 py-1 text-sm text-left">{{ citizen.father_name }}</td>
+          <td class="px-2 py-1 text-sm text-left">{{ citizen.mother_name }}</td>
           <td class="px-2 py-1 text-sm text-left">
-            <Link class="px-3 py-1 bg-blue-500 text-white rounded" :href="route('citizens.edit', citizen.id)">Ver
+            <Link class="px-3 py-1 bg-blue-500 text-white rounded" :href="route('citizens.show', citizen.id)">Ver
             </Link>
 
           </td>

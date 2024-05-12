@@ -11,6 +11,7 @@ class Adresses extends Model
     use HasFactory;
 
     protected $fillable = [
+        'adress_type',
         'cep',
         'street',
         'number',

@@ -55,9 +55,11 @@ class CitizenController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Citizen $citizen)
+    public function show(int $id): Response
     {
-        //
+        return Inertia::render('Citizens/Edit', [
+            'citizens' => Citizen::where('id', $id)->get(),
+        ]);
     }
 
     /**

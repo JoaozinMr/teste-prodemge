@@ -17,13 +17,7 @@ class CitizenFactory extends Factory
     public function definition(): array
     {
         return [
-            'name' => $this->faker->name(),
-            'social_name' => $this->faker->name(),
-            'cpf' => $this->faker->unique()->cpf(),
-            'email' => $this->faker->unique()->email(),
-            'phone' => $this->faker->phoneNumber(),
-            'father_name' => $this->faker->name(),
-            'mother_name' => $this->faker->name(),
+            //
         ];
     }
 }

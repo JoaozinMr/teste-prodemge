@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\CitizenController;
+use App\Http\Controllers\AdressesController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -20,6 +21,8 @@ Route::middleware('auth')->group(function () {
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
-Route::resource('citizens', CitizenController::class)->only(['index', 'create', 'store', 'edit', 'update', 'destroy'])->middleware(['auth', 'verified']);
+Route::resource('citizens', CitizenController::class)->only(['index', 'create', 'store', 'show', 'edit', 'update', 'destroy'])->middleware(['auth', 'verified']);
+
+Route::resource('adresses', AdressesController::class)->only(['index', 'create', 'store', 'show', 'edit', 'update', 'destroy'])->middleware(['auth', 'verified']);
 
 require __DIR__ . '/auth.php';
